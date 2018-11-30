@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <!-- <audio id="melo" src="https://youk720.github.io/melo_work/melo/熊谷市歌_verA(実録).mp3" preload="auto"> -->
+    <!-- <audio id="melo" src="https://youk720.github.io/melo_work/melo/JR-SH3-1(実録).mp3" preload="auto"> -->
+    <audio id="melo" src="https://youk720.github.io/melo_work/melo/電車ごっこ ver D_1.mp3" preload="auto"
+
+      <source type="audio/mp3">
+      </audio>
+    <audio id="door" src="https://youk720.github.io/melo_work/melo/tuda/3_2.mp3" preload="auto">
+      <source type="audio/mp3">
+    </audio>
+
+    <button id="on" style='font-size:38px;' class="btn btn-danger btn-lg  text-center"><strong> ON </strong></button>
+    <br>
+    <button id="off" style='font-size:30px;' class="btn btn-success btn-lg"><strong>OFF</strong></button>
+    <br>
+    <div class="text-info"><strong>
+    <p>再生時間/メロディ合計時間</p>
+    <span id="time"></span></strong></div>
+    <br>
+    <!-- <p id="sw_now" style="display: none;"></p> -->
+    <p id="sw_now"></p>
+
+
+
+    <script type="text/javascript" src="javascripts/view.js"></script>
+  </body>
+</html>
