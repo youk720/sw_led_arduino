@@ -9,18 +9,27 @@
   </head>
   <body>
     <!-- <audio id="melo" src="https://youk720.github.io/melo_work/melo/熊谷市歌_verA(実録).mp3" preload="auto"> -->
-    <!-- <audio id="melo" src="https://youk720.github.io/melo_work/melo/JR-SH3-1(実録).mp3" preload="auto"> -->
-    <audio id="melo" src="https://youk720.github.io/melo_work/melo/電車ごっこ ver D_1.mp3" preload="auto"
+    <!-- <audio id="melo" src="https://youk720.github.io/melo_work/melo/JR-SH3-1.mp3" preload="auto"> -->
+    <audio id="melo" src="https://youk720.github.io/melo_work/melo/夏色の時間_1.mp3" preload="auto">
+    <!-- <audio id="melo" src="https://youk720.github.io/melo_work/melo/電車ごっこ ver D_1.mp3" preload="auto" -->
 
       <source type="audio/mp3">
       </audio>
-    <audio id="door" src="https://youk720.github.io/melo_work/melo/tuda/3_2.mp3" preload="auto">
+    <!-- <audio id="door" src="https://youk720.github.io/melo_work/melo/tuda/3_2.mp3" preload="auto"> -->
+      <audio id="door" src="https://youk720.github.io/melo_work/melo/tuda/4.mp3" preload="auto">
+      <!-- <audio id="door" src="https://youk720.github.io/melo_work/melo/saki/1.mp3" preload="auto"> -->
       <source type="audio/mp3">
     </audio>
 
-    <button id="on" style='font-size:38px;' class="btn btn-danger btn-lg  text-center"><strong> ON </strong></button>
+    <div class="sw" style="background:#F2D88C;width:200px;height:300px">
+
+    <p style="background:#ffffff;font-size:30px;position:absolute; top:75px;left:90px;">発車ベル</p>
+
+    <button id="on" style='font-size:50px;width:140px;height:100px;position:absolute; top:130px;left:79px;' class="btn btn-danger btn-lg  text-center"><strong> ON </strong></button>
     <br>
-    <button id="off" style='font-size:30px;' class="btn btn-success btn-lg"><strong>OFF</strong></button>
+    <button id="off" style='font-size:50px;width:140px;height:100px;position:absolute; top:230px;left:79px' class="btn btn-success btn-lg"><strong>OFF</strong></button>
+    </div>
+    <br>
     <br>
     <div class="text-info"><strong>
     <p>再生時間/メロディ合計時間</p>
@@ -29,7 +38,11 @@
     <!-- <p id="sw_now" style="display: none;"></p> -->
     <p id="sw_now"></p>
 
-
+    <p id="mv_value" value="">メロディ用ボリューム</p>
+    <input type="range" id="melo_volume" style="width:240px;padding:0px 4px" value="50" min="0" max="100">
+    <br>
+    <p id="dov_value" value="">ドア閉め放送用ボリューム</p>
+    <input type="range" id="door_volume" style="width:240px;padding:0px 4px" value="50" min="0" max="100">
 
     <script type="text/javascript" src="javascripts/view.js"></script>
   </body>

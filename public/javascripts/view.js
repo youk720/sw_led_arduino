@@ -20,17 +20,61 @@ function sub_send(){
 let melo = $("#melo");
 let door = $('#door');
 
+let volume = $("#melo_volume");
+let volume_door = $("#door_volume");
+
+//ボリューム数値,元値を100倍して出力
+$("#mv_value").html("メロディ用ボリューム" + " 現在:" + Math.round(melo.get(0).volume * 100)/ 10);
+//ボリューム数値,元値を100倍して出力
+$("#dov_value").html("ドア閉め放送用ボリューム" + " 現在:" + Math.round(door.get(0).volume * 100)/ 10);
+
+//メロディ音源ボリューム制御
+
+
+$(volume).change(function() {
+
+  let volumeValue = (volume.val().length == 1) ? '0.0' + volume.val() : '0.' + volume.val();
+
+    if (volumeValue === "0.100") {
+        melo.get(0).volume = 1;
+        $("#mv_value").html("メロディ用ボリューム" + " 現在:" + 100);//ボリューム数値,元値を100倍して出力
+    }else{
+      melo.get(0).volume = volumeValue;
+      $("#mv_value").html("メロディ用ボリューム" + " 現在:" + (volumeValue * 1000)/ 10);//ボリューム数値,元値を100倍して出力
+    }
+
+  // $(volume).val(volumeValue);
+});
+
+//ドア閉放送ボリューム制御
+
+
+$(volume_door).change(function() {
+  let volumeValue = (volume_door.val().length == 1) ? '0.0' + volume_door.val() : '0.' + volume_door.val();
+
+  if (volumeValue === "0.100") {
+    door.get(0).volume = 1;
+    $("#dov_value").html("ドア閉め放送用ボリューム" + " 現在:" + 100);
+  }else{
+  $("#dov_value").html("ドア閉め放送用ボリューム" + " 現在:" +((volumeValue) * 1000)/10);//ボリューム数値,元値を100倍して出力
+  door.get(0).volume = volumeValue;
+  // $(volume_door).val(volumeValue);
+      }
+  });
+
+
+
 // メロディ & 戸閉放送,再生処理
 function on(){
   $(function(){
     melo.get(0).play();
     melo.get(0).loop = true;
-    door.get(0).currentTime = 0;
-    console.log("melody's loop is " + melo.get(0).loop);
+    // console.log("melody's loop is " + melo.get(0).loop);
     m.shift();
     m.push("led_2=True");
     sub_send();
     door_led_status = 2;
+    console.log("tuda_debug1");
   });
 }
 
@@ -53,6 +97,7 @@ function off(){
         m.push("led_1=True");
         sub_send();
         door_led_status = 1;
+        console.log("tuda_debug5");
       }
   });
 }
@@ -91,6 +136,7 @@ setInterval(function(){
       $("#off").removeClass().addClass("btn btn-default btn-lg  text-center");
       bell_status = 0;
       door_status = 1;
+
   };
   if(door_status === 1 && $('#sw_now').text() === "False"){
       $("#on").removeClass().addClass("btn btn-default btn-lg");
@@ -108,10 +154,12 @@ setInterval(function() {
     m.push("led_1=False");
     sub_send();
     door_led_status = 0;
+    console.log("tuda_debug2");
   }else if(door.get(0).currentTime === door.get(0).duration && door_led_status === 2){
     m.shift();
     m.unshift("led_1=False");
     sub_send();
+    console.log("tuda_debug3");
   }
 
 }, 10);

@@ -5,10 +5,10 @@ let sw = '';
 
 // スイッチ側からのPOST処理
 
-router.post('/', function(req, res){
-  // 上で定義した変数に、postされたjsonデータを代入
-  sw = req.body.sw;
-});
+// router.post('/', function(req, res){
+//   // 上で定義した変数に、postされたjsonデータを代入
+//   sw = req.body.sw;
+// });
 
 // メインページのGET処理
 router.get('/', function(req, res, next) {
@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 // swページへjsonを送る処理
 router.get('/sw', function(req, res, next){
   res.json({
-    sw: sw
+    sw: sw_status.sw
   });
 });
 

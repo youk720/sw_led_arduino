@@ -6,3 +6,34 @@ body {
 a {
   color: #00B7FF;
 }
+input[type=range] {
+  -webkit-appearance:none;
+
+}
+
+/*
+https://freefielder.jp/blog/2018/09/css-input-range-crossbrowser.html
+ */
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #cccccc;
+  border-radius: 1.3px;
+  border: 1px solid #010101;
+}
+/* WebKit・Blink向け つまみのスタイル */
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background: #1987E5;
+  cursor: pointer;
+  -webkit-appearance: none;
+  /* 以下は つまみの縦位置調整 */
+  margin-top: -10px;  /* (つまみの高さ - トラックの高さ) / 2 。つまみの高さは border を含む */
+}

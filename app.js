@@ -2,7 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+// var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -10,6 +10,12 @@ var usersRouter = require('./routes/users');
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io').listen(http);
+
+const SerialPort = require('serialport');
+const port = new SerialPort('/dev/cu.usbmodem141101', {
+  parser: SerialPort.parsers.readline('\n'),
+  baudrate: 9600
+});
 
 // routes/index.jsで使えるようにグローバル変数の初期定義
 global_val = "";
@@ -29,6 +35,22 @@ io.on('connection', function(socket){
  });
 });
 
+sw_status = "";
+port.on('open', function(){
+  console.log('Serial open.');
+  // port.write(global_val);
+  // console.log("send: " + global_val);
+});
+port.on('data', function (data) {
+  console.log("json: " + data);
+  sw_status = JSON.parse(data);
+});
+port.on('data', function(){
+  port.write(global_val);
+  console.log("send: " + global_val);
+});
+
+
 // 諸事情あり、localhost:8000番でクライアントは立ち上げる
 http.listen(8000, function(){
   console.log('listening on *:8000');
@@ -38,7 +60,7 @@ http.listen(8000, function(){
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(logger('dev'));
+// app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
