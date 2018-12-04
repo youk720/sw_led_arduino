@@ -35,16 +35,25 @@ io.on('connection', function(socket){
  });
 });
 
+
+// Arduinoシリアル関連メイン処理
 sw_status = "";
+
+// コード開始時に処理するもの
 port.on('open', function(){
   console.log('Serial open.');
   // port.write(global_val);
   // console.log("send: " + global_val);
 });
+
+// Serial.printlnの出力を読み取って,JSONに変換するところ
 port.on('data', function (data) {
   console.log("json: " + data);
+  // 入力された文字列をJSONへ変換
   sw_status = JSON.parse(data);
 });
+
+// LEDの反応をArduino側へ送る部分
 port.on('data', function(){
   port.write(global_val);
   console.log("send: " + global_val);
